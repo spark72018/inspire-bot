@@ -21,9 +21,6 @@ app.get('/auth', function(req, res) {
       // Get the team domain name to redirect to the team URL after auth
       request.post('https://slack.com/api/team.info', {form: {token: token}}, function (error, response, body) {
         if (!error && response.statusCode == 200) {
-          // if(JSON.parse(body).error == 'missing_scope') {
-          //   res.send('NavBuddy has been added to your team!');
-          // } else {
             var team = JSON.parse(body).team.domain;
             res.redirect('http://'+team+'.slack.com');
           //}
